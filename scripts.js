@@ -2,13 +2,31 @@
 
 let allButtons = document.querySelectorAll(".drum");
 
+//Loop
+//EventListener for buttons
 for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", function () {
     let textValue = this.innerHTML.toUpperCase();
+
+    allButtons.style.transform = "scale(1.1)";
+
+    setTimeout(function () {
+      allButtons.style.transform = "scale(1)";
+    }, 200);
+
+    setTimeout(function () {
+      allButtons.style.transform = "scale(1.1)";
+    }, 400);
+
+    setTimeout(function () {
+      allButtons.style.transform = "scale(1)";
+    }, 600);
     getSound(textValue);
   });
 }
 
+//Playing sound for key,which is pressed
+//This part work's for mouse clicks
 function getSound(key) {
   switch (key) {
     case "W":
@@ -45,6 +63,9 @@ function getSound(key) {
   }
 }
 
+//EventListener
+//selecting whole page
+//playing sound for button on keyboard.
 function onKeyboardKeyPress() {
   document.addEventListener("keypress", (event) => {
     let key = event.key.toUpperCase();
