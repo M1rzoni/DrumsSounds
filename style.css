@@ -1,0 +1,33 @@
+:root {
+  --primary-font: "Jaro", sans-serif;
+  --background-color: #ffb1b1;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  font-family: var(--primary-font);
+}
+
+.main-container {
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+.title h1 {
+  font-size: 4rem;
+  color: black;
+  letter-spacing: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
