@@ -7,21 +7,26 @@ let allButtons = document.querySelectorAll(".drum");
 for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", function () {
     let textValue = this.innerHTML.toUpperCase();
+    let value = this.innerHTML;
+    let button = this;
 
-    allButtons.style.transform = "scale(1.1)";
+    button.style.transform = "scale(1.1)";
 
     setTimeout(function () {
-      allButtons.style.transform = "scale(1)";
+      button.style.transform = "scale(1)";
     }, 200);
 
     setTimeout(function () {
-      allButtons.style.transform = "scale(1.1)";
+      button.style.transform = "scale(1.1)"; //buggi~!!!
     }, 400);
 
     setTimeout(function () {
-      allButtons.style.transform = "scale(1)";
+      button.style.transform = "scale(1)";
     }, 600);
-    getSound(textValue);
+
+    getSound(value);
+    onKeyboardKeyPress(value);
+    buttonAnimation(value);
   });
 }
 
@@ -29,31 +34,31 @@ for (let i = 0; i < allButtons.length; i++) {
 //This part work's for mouse clicks
 function getSound(key) {
   switch (key) {
-    case "W":
+    case "w":
       let sound1 = new Audio("sounds/sound1.mp3");
       sound1.play();
       break;
-    case "A":
+    case "a":
       let sound2 = new Audio("sounds/sound2.wav");
       sound2.play();
       break;
-    case "S":
+    case "s":
       let sound3 = new Audio("sounds/sound3.wav");
       sound3.play();
       break;
-    case "D":
+    case "d":
       let sound4 = new Audio("sounds/sound4.wav");
       sound4.play();
       break;
-    case "Q":
+    case "q":
       let sound5 = new Audio("sounds/sound5.wav");
       sound5.play();
       break;
-    case "E":
+    case "e":
       let sound6 = new Audio("sounds/sound6.wav");
       sound6.play();
       break;
-    case "H":
+    case "h":
       let sound7 = new Audio("sounds/sound7.wav");
       sound7.play();
       break;
@@ -68,8 +73,19 @@ function getSound(key) {
 //playing sound for button on keyboard.
 function onKeyboardKeyPress() {
   document.addEventListener("keypress", (event) => {
-    let key = event.key.toUpperCase();
+    let key = event.key;
     getSound(key);
+    buttonAnimation(key);
   });
 }
-onKeyboardKeyPress();
+
+//Animation, happend when key is pressed
+function buttonAnimation(key) {
+  let button = document.querySelector("." + key);
+  if (button) {
+    button.classList.add("animation");
+    setTimeout(function () {
+      button.classList.remove("animation");
+    }, 100);
+  }
+}
